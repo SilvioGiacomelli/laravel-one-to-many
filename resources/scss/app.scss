@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/bootstrap';
+
+.main-wrapper {
+   height: calc(100vh - 56px);
+   overflow-y: auto;
+   background-color: aqua;
+   display: flex;
+}
+aside {
+   background-color: #f8f9fa;
+   border-right: 1px solid #dee2e6;
+   width: 8%;
+   ul{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        li{
+             padding: 10px;
+             cursor: pointer;
+             &:hover{
+                background-color: #e9ecef;
+             }
+        }
+        i{
+            margin-right: 10px;
+        }
+   }
+}
+

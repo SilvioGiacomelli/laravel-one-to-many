@@ -28,13 +28,13 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
+                <th scope="col">Type</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $project)
                 <tr scope="row">
-
                     <td>
                         <form action="{{ route('admin.projects.update', $project) }}" method="POST"
                             id="form-projects-{{ $project->id }}">
@@ -42,6 +42,9 @@
                             @method('PUT')
                             <input type="text" value="{{ $project->title }}" name="title">
                         </form>
+                    </td>
+                    <td>
+                        {{ $project->type->title }}
                     </td>
                     <td>
                         <button class="btn btn-warning" onclick="submitForm({{ $project->id }})"

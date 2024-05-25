@@ -14,18 +14,17 @@
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="{{ route('home') }}">Vai al sito</a>
                     </li>
+                </ul>
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <p>{{ Auth::user()->name }}</p>
+                        <p class="nav-link">{{ Auth::user()->name }}</p>
                     </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
+                        <li class="nav-item">
                             @csrf
-                    <li>
-
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </li>
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </li>
                     </form>
-                    </li>
                 </ul>
             </div>
         </div>

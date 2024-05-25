@@ -22,6 +22,11 @@
                     <li>
                         <i class="fa-solid fa-diagram-project"></i><a
                             href="{{ route('admin.projects.index') }}">Projects</a>
+                        <ul class="dropdown">
+                            <li id="new-project"><a href="{{ route('admin.projects.create') }}"><i
+                                        class="fa-solid fa-plus"></i>New
+                                    Project</a></li>
+                        </ul>
                     </li>
                     <li>
                         <i class="fa-solid fa-hurricane"></i><a href="{{ route('admin.types.index') }}">Types</a>

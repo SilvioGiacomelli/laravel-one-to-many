@@ -18,13 +18,9 @@
             {{ session('success') }}
         </div>
     @endif
-    <a href="{{ route('admin.projects.create') }}">
-        <div class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></div>
-    </a>
-    <form class="d-flex" role="input" action="{{ route('admin.projects.create') }}">
-        @csrf
-        <input class="form-control me-2" name="title" type="input" placeholder="New Technology" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Create</button>
+    <form class="d-flex" method='GET' role="search" action="{{ route('admin.projects.index') }}">
+        <input class="form-control me-2" name="toSearch" type="search" placeholder="Search Project" aria-label="Search">
+        <button class="btn btn-outline-success" type="search">Search</button>
     </form>
 
     <table class="table">

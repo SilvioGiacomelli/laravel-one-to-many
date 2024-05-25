@@ -1,10 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'header';
 
 .main-wrapper {
    height: calc(100vh - 56px);
    overflow-y: auto;
    background-color: aqua;
    display: flex;
+   .dropdown {
+    display: none;
+    .new-project{
+        padding: 10px;
+        cursor: pointer;
+    }
+}
+
+li:hover .dropdown {
+    display: block;
+}
 }
 aside {
    background-color: #f8f9fa;
@@ -23,6 +35,7 @@ aside {
              cursor: pointer;
              &:hover{
                 background-color: #e9ecef;
+                border-radius: 5px
              }
         }
         i{
@@ -30,4 +43,12 @@ aside {
         }
    }
 }
-
+#new-project{
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 2%;
+    &:hover{
+        background-color: #bcc4cc;
+        border-radius: 5px;
+    }
+}

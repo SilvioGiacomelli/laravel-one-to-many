@@ -18,10 +18,13 @@
             {{ session('success') }}
         </div>
     @endif
-    <form class="d-flex" role="input" action="{{ route('admin.projects.store') }}" method="POST">
+    <a href="{{ route('admin.projects.create') }}">
+        <div class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></div>
+    </a>
+    <form class="d-flex" role="input" action="{{ route('admin.projects.create') }}">
         @csrf
         <input class="form-control me-2" name="title" type="input" placeholder="New Technology" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Send</button>
+        <button class="btn btn-outline-success" type="submit">Create</button>
     </form>
 
     <table class="table">
@@ -44,15 +47,18 @@
                         </form>
                     </td>
                     <td>
-                        {{ $project->type->title }}
+                        {{ $project->type?->title }}
                     </td>
                     <td>
-                        <button class="btn btn-warning" onclick="submitForm({{ $project->id }})"
-                            type="submit">Edit</button>
+                        {{-- <button class="btn btn-warning" onclick="submitForm({{ $project->id }})" type="submit">Edit
+                        </button> --}}
+                        <a href="{{ route('admin.projects.edit', $project->id) }}">
+                            <div class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></div>
+                        </a>
                         <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
                         </form>
 
                     </td>
@@ -60,10 +66,10 @@
             @endforeach
         </tbody>
     </table>
-    <script>
+    {{-- <script>
         function submitForm(id) {
             const form = document.getElementById(`form-projects-${id}`);
             form.submit();
         }
-    </script>
+    </script> --}}
 @endsection

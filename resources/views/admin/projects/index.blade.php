@@ -30,6 +30,7 @@
                         href="{{ route('admin.projects.order', ['direction' => $direction, 'column' => 'title']) }}">Title</a>
                 </th>
                 <th scope="col">Type</th>
+                <th scope="col">Image</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -46,6 +47,14 @@
                     </td>
                     <td>
                         {{ $project->type?->title }}
+                    </td>
+                    <td>
+                        @if ($project->image)
+                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->image }}"
+                                width="100">
+                        @else
+                            No image
+                        @endif
                     </td>
                     <td>
                         {{-- <button class="btn btn-warning" onclick="submitForm({{ $project->id }})" type="submit">Edit

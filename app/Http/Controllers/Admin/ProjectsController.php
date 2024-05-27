@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Functions\Helper as Help;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -49,12 +50,19 @@ class ProjectsController extends Controller
         $exists = $request->validate(
             [
                 'title' => 'required|string',
+                'image' => 'sometimes|image',
             ],
             [
                 'title.required' => 'Title is required',
                 'title.string' => 'Title must be a string',
+                'image.image' => 'Uploaded file must be an image',
             ]
         );
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            $data['image'] = $path;
+        }
+
         $exists = Project::where('title', $request->title)->first();
         if ($exists) {
             return redirect()->route('admin.projects.index')->with('error', 'Project already exists');
@@ -62,6 +70,7 @@ class ProjectsController extends Controller
             $project = new Project();
             $project->title = $request->title;
             $project->slug = Help::generateSlug($project->title, Project::class);
+            $project->image = $data['image'] ?? null;
             $project->save();
             return redirect()->route('admin.projects.index')->with('success', 'Project created');
         }
@@ -91,10 +100,12 @@ class ProjectsController extends Controller
         $data = $request->validate(
             [
                 'title' => 'required|string',
+                'image' => 'sometimes|image',
             ],
             [
                 'title.required' => 'Title is required',
                 'title.string' => 'Title must be a string',
+                'image.image' => 'Uploaded file must be an image',
             ]
         );
         $exists = Project::where('title', $request->title)->first();

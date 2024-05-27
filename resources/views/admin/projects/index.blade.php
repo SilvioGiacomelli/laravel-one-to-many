@@ -26,7 +26,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Title</th>
+                <th scope="col"><a
+                        href="{{ route('admin.projects.order', ['direction' => $direction, 'column' => 'title']) }}">Title</a>
+                </th>
                 <th scope="col">Type</th>
                 <th scope="col">Actions</th>
             </tr>

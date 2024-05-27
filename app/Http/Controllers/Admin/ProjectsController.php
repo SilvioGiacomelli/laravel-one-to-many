@@ -21,7 +21,16 @@ class ProjectsController extends Controller
             $projects = Project::all();
         }
 
-        return view('admin.projects.index', compact('projects'));
+        $direction = 'desc';
+
+        return view('admin.projects.index', compact('projects', 'direction'));
+    }
+
+    public function order($direction, $column)
+    {
+        $direction = $direction === 'desc' ? 'asc' : 'desc';
+        $projects = Project::orderBy($column, $direction)->get();
+        return view('admin.projects.index', compact('projects', 'direction'));
     }
 
     /**
@@ -37,6 +46,15 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        $exists = $request->validate(
+            [
+                'title' => 'required|string',
+            ],
+            [
+                'title.required' => 'Title is required',
+                'title.string' => 'Title must be a string',
+            ]
+        );
         $exists = Project::where('title', $request->title)->first();
         if ($exists) {
             return redirect()->route('admin.projects.index')->with('error', 'Project already exists');

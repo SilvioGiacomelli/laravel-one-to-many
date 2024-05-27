@@ -31,8 +31,9 @@ route::middleware(['auth', 'verified'])
         route::resource('projects', ProjectsController::class);
         route::resource('types', TypesController::class);
         route::resource('technologies', TechnologiesController::class);
+        //sono rotte custom che non fanno parte del crud
+        Route::get('order/{direction}/{column}', [ProjectsController::class, 'order'])->name('projects.order');
     });
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
